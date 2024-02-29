@@ -1,0 +1,11 @@
+#############################
+#####Planetes a défendre#####
+#############################
+
+https://helldivers-2.fly.dev/api/801/status
+> planet_events
+max_health - health = pourcentage de défense de la planète.
+
+https://helldivers-2.fly.dev/api/801/status
+> planet_status
+max_health - health = pourcentage de défense de la planète.
