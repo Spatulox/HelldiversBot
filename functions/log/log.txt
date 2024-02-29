@@ -1,0 +1,4 @@
+[29/02/2024 - 16:13:52] CheckingInternet
+[29/02/2024 - 16:13:52] Internet connection is available.
+[29/02/2024 - 16:13:59] ERROR : impossible to read the directory: Error: ENOENT: no such file or directory, scandir 'C:\Marc\Perso\01-Projet\commands'
+[29/02/2024 - 16:13:59] WARNING : Impossible to list files in deployCommand()
