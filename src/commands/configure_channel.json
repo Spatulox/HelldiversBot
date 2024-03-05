@@ -1,0 +1,13 @@
+{
+    "name": "configure-channel",
+    "type": 1,
+    "description": "Set a channel to send the Galactic War Report",
+    "options":[
+        {
+            "type" : 7,
+            "name" : "discord-channel-to-post",
+            "description" : "Specifie the channel where the Galactic War is going to be post...",
+            "required" : true
+        }
+    ]
+}

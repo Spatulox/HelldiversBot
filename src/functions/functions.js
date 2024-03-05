@@ -11,8 +11,11 @@ export function log(str) {
   const __dirname = path.dirname(__filename);
 
   // Determinate the path of the log folder and file
-  const logDir = path.join(__dirname.split('\\Functions')[0], 'log');
+  //console.log(__dirname)
+  const logDir = path.join(__dirname.split('\\src')[0], 'src\\log');
   const filePath = path.join(logDir, 'log.txt');
+
+  //console.log(filePath)
 
   // Create the log directory
   try{
@@ -77,7 +80,7 @@ export function log(str) {
     fs.appendFileSync(filePath, previousStr+str+'\n');
   }
   catch(error){
-    console.log('Impossible to write the log file... ', error)
+    console.log('ERROR : Impossible to write the log file... ', error)
   }
   
 }
@@ -342,5 +345,25 @@ export async function recapBotsErrors(client, config){
   }
   catch{
     log('ERROR : Impossible to post the recap of the error in the channel')
+  }
+}
+
+
+//----------------------------------------------------------------------------//
+
+export function searchChannelInGuild(channelId, guildId, client){
+
+  const guild = client.guilds.cache.get(guildId); // Récupérer la référence à la guilde
+
+  if(guild) {
+      const channel = guild.channels.cache.get(channelId); // Récupérer la référence au canal
+      if(channel) {
+        return channel
+          //channel.send('Votre message ici'); // Envoyer le message dans le canal spécifié
+      } else {
+          console.log('Canal non trouvé.');
+      }
+  } else {
+      console.log('Guilde non trouvée.');
   }
 }

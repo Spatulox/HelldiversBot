@@ -5,7 +5,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 export async function deployCommand(client){
 
   // Import commands files
-  const listFile = await listJsonFile('../commands/')
+  const listFile = await listJsonFile('./src/commands/')
 
   if (!listFile){
     log('WARNING : Impossible to list files in deployCommand()')
@@ -18,7 +18,7 @@ export async function deployCommand(client){
 
     try{
 
-      const command = await readJsonFile(`./commands/${file}`, 'utf8')
+      const command = await readJsonFile(`./src/commands/${file}`, 'utf8')
 
       let commandData = new SlashCommandBuilder()
         .setName(command.name)

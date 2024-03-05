@@ -1,29 +1,9 @@
-/*function main(){
-	
-	const file = require('test.json')
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'https://www.example.com/data.json', true);
-	xhr.send();
-
-
-	xhr.onreadystatechange = function() {
-    	if (xhr.readyState === 4 && xhr.status === 200) {
-        	console.log(xhr.responseText);
-    	}
-	};
-
-	console.log("coucou");
-
-
-}*/
-
-
 /**********************************************************************
 Author : Marc Lecomte
 Date : 18/10/2023
 
 
-main file for the moment
+main file
 
 
 
@@ -35,14 +15,15 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import Discord from 'discord.js'
 
 // Files
-import config from './config.json' assert { type: 'json' };
+import config from './src/config.json' assert { type: 'json' };
 
 // Functions
-//import { addReactions } from './functionnalities/reactions.js'
-import { log, recapBotsErrors } from './Functions/functions.js'
-import { checkInternetCo } from './functions/checkInternetCo.js'
-import { deployCommand } from './functions/deployCommand.js';
-import { executeSlashCommand } from './functions/executeCommand.js';
+import { log, recapBotsErrors, searchChannelInGuild } from './src/functions/functions.js'
+import { checkInternetCo } from './src/functions/checkInternetCo.js'
+import { deployCommand } from './src/functions/deployCommand.js';
+import { executeSlashCommand } from './src/functions/executeCommand.js';
+
+import { retrieveAndPrintInfos } from './src/functions/retrieveInfos.js';
 
 
 
@@ -76,6 +57,9 @@ async function loginBot(client) {
 function main(){
 
 	log('----------------------------------------------------')
+
+	//retrieveAndPrintInfos()
+	
 	checkInternetCo()
     .then(() => {
 
@@ -115,11 +99,19 @@ function main(){
 
 			client.user.setStatus('dnd');
 
+			// Creating the owner (Just me, if it's an arry, it not gonna work)
+			const owner = await client.users.fetch(config.owner);
+
 			log('Deploying slashes commands')
 			await deployCommand(client)
-			// process.exit()
+
+			owner.send("Bot online")
+
+			let channelToSend = searchChannelInGuild("1162047096220827831", "1162047095570706533", client)
+			//channelToSend.send("Coucou");
 
 			// try{
+				retrieveAndPrintInfos()
 				//functionName
 				//setInterval(function(){functionName;}, 3600000)
 				// setInterval(function(){recupLatestVideo(client);}, 900000)
@@ -135,6 +127,7 @@ function main(){
 			executeSlashCommand(interaction, client)
 		  });
 	});
+	
 }
 
 

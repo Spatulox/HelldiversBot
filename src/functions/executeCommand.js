@@ -7,8 +7,9 @@ export async function executeSlashCommand(interaction, client){
     if (!interaction.isCommand()) return;
     // console.log(client)
 
-    if (interaction.commandName === 'name') {
-        
+    if (interaction.commandName === 'configure-channel') {
+        console.log(interaction)
+        interaction.reply("replied")
     }
   
     if (interaction.commandName === 'name') {
